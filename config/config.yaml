@@ -1,0 +1,51 @@
+data:
+  sentences_path: "input/sentences.txt"
+  words_path: "input/words.txt"
+  num_sentences: 100000
+  sentence_min_len: 5
+  sentence_max_len: 6
+  train_ratio: 0.8
+  test_ratio: 0.1
+  dedup_threshold: 0.0005
+  max_dedup_retries: 3
+  data_seed: 42
+
+variants:
+  baseline_rnn:
+    architecture: "rnn"
+    predict_n: 1
+  variant_a_rnn:
+    architecture: "rnn"
+    predict_n: 2
+  variant_b_rnn:
+    architecture: "rnn"
+    predict_n: 3
+  baseline_lstm:
+    architecture: "lstm"
+    predict_n: 1
+  variant_a_lstm:
+    architecture: "lstm"
+    predict_n: 2
+  variant_b_lstm:
+    architecture: "lstm"
+    predict_n: 3
+
+model:
+  embedding_dim: 128
+  hidden_size: 256
+  num_layers: 2
+  dropout: 0.3
+
+training:
+  model_seed: 99
+  epochs: 20
+  batch_size: 256
+  learning_rate: 0.001
+  grad_clip: 1.0
+  save_every_n_epochs: 5
+
+output:
+  checkpoints_dir: "output/checkpoints"
+  logs_dir: "output/logs"
+  dataset_stats_file: "output/logs/dataset_stats.txt"
+  results_summary_file: "output/analysis/results_summary.csv"
